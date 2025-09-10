@@ -1,0 +1,477 @@
+<!-- Ancien Code -->
+
+<!-- <!DOCTYPE html>
+<html>
+<head>
+<style>
+.pricing {
+width: 300px;
+margin: auto;
+background-color: #fff;
+box-shdow: 0 0 10px #ccc;
+padding: 10px;
+text-align: left;
+}
+
+.title {
+font-size: 22px;
+font-weight: bold;
+}
+
+.price {
+font-size: 18px;
+color: green;
+}
+
+.features {
+list-style: none;
+padding-left: 0;
+}
+
+.features li {
+padding: 4px;
+border-bottom: 1px solid #eee;
+}
+
+.btn {
+background: blue;
+color: white;
+padding: 10px 20px;
+border: none;
+margin-top: 10px;
+}
+
+.btn:hover {
+background: darkblue;
+}
+</style>
+</head>
+<body>
+
+<div class="pricing">
+<h2 class="title">Basic Plan<h2>
+<p class="price">$9.99 /month</p>
+
+<ul class="features">
+<li>1 GB Storage</li>
+<li>Basic Support</li>
+<li>All Core Features</li>
+</ul>
+
+<button class="btn">Start Trial</button>
+</div>
+
+</body>
+</html> -->
+
+
+<!-- Nouveau Code  -->
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Composants Pricing Card</title>
+    <style>
+        :root {
+            /* === COULEURS === */
+            --pricing-accent: #2563eb;
+            --pricing-accent-hover: #1d4ed8;
+            --pricing-accent-light: #dbeafe;
+            --pricing-text-primary: #1a1a1a;
+            --pricing-text-secondary: #374151;
+            --pricing-border: #d1d5db;
+            --pricing-bg: #ffffff;
+            
+            /* === TYPOGRAPHIE === */
+            --pricing-font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            --pricing-font-size-xs: clamp(0.875rem, 2vw, 1rem);      /* 14-16px */
+            --pricing-font-size-sm: clamp(1rem, 2vw, 1.125rem);      /* 16-18px */
+            --pricing-font-size-base: clamp(1rem, 2vw, 1.125rem);    /* 16-18px */
+            --pricing-font-size-lg: clamp(1.125rem, 2.5vw, 1.25rem); /* 18-20px */
+            --pricing-font-size-xl: clamp(1.25rem, 2.5vw, 1.5rem);   /* 20-24px */
+            --pricing-font-size-2xl: clamp(1.375rem, 3vw, 1.625rem); /* 22-26px */
+            --pricing-font-weight-normal: 400;
+            --pricing-font-weight-medium: 500;
+            --pricing-font-weight-semibold: 600;
+            --pricing-font-weight-bold: 700;
+            --pricing-line-height-tight: 1.2;
+            --pricing-line-height-normal: 1.4;
+            --pricing-line-height-relaxed: 1.6;
+            
+            /* === ESPACEMENT === */
+            --pricing-space-xs: 4px;
+            --pricing-space-sm: 8px;
+            --pricing-space-md: 12px;
+            --pricing-space-lg: 16px;
+            --pricing-space-xl: 20px;
+            --pricing-space-2xl: 24px;
+            --pricing-space-3xl: 32px;
+            --pricing-space-4xl: 48px;
+            --pricing-padding-card: clamp(16px, 4vw, 32px);
+            --pricing-padding-button: clamp(14px, 3vw, 18px) 24px;
+            --pricing-padding-feature: 12px 0;
+            --pricing-margin-section: 20px;
+            
+            /* === BORDURES ET RAYONS === */
+            --pricing-border-width: 1px;
+            --pricing-border-width-thick: 2px;
+            --pricing-border-width-focus: 3px;
+            --pricing-radius-sm: 4px;
+            --pricing-radius-md: 6px;
+            --pricing-radius-lg: 8px;
+            --pricing-radius-xl: 12px;
+            
+            /* === OMBRES === */
+            --pricing-shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+            --pricing-shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1);
+            --pricing-shadow-lg: 0 8px 12px rgba(0, 0, 0, 0.15);
+            --pricing-shadow-xl: 0 12px 16px rgba(0, 0, 0, 0.2);
+            --pricing-shadow-button: 0 2px 4px rgba(0, 0, 0, 0.1);
+            --pricing-shadow-button-hover: 0 4px 8px rgba(0, 0, 0, 0.15);
+            
+            /* === TRANSITIONS === */
+            --pricing-transition-fast: 0.15s ease;
+            --pricing-transition-normal: 0.2s ease;
+            --pricing-transition-slow: 0.3s ease;
+        }
+
+        /* Variantes de couleurs */
+        .pricing-card--starter {
+            --pricing-accent: #059669;
+            --pricing-accent-hover: #047857;
+            --pricing-accent-light: #d1fae5;
+        }
+
+        .pricing-card--pro {
+            --pricing-accent: #7c3aed;
+            --pricing-accent-hover: #6d28d9;
+            --pricing-accent-light: #ede9fe;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--pricing-font-family);
+            margin: 0;
+            padding: var(--pricing-space-xl);
+            background-color: #f5f5f5;
+            min-height: 100vh;
+        }
+
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: var(--pricing-space-2xl);
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .pricing-card {
+            max-width: 350px;
+            width: 100%;
+            margin: 0 auto;
+            background-color: var(--pricing-bg);
+            box-shadow: var(--pricing-shadow-md);
+            border-radius: var(--pricing-radius-lg);
+            padding: var(--pricing-padding-card);
+            text-align: left;
+            transition: all var(--pricing-transition-slow);
+            position: relative;
+            overflow: hidden;
+            border: var(--pricing-border-width-thick) solid transparent;
+        }
+
+        .pricing-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--pricing-shadow-lg);
+        }
+
+        .pricing-card:focus-within {
+            border-color: var(--pricing-accent);
+            outline: var(--pricing-border-width-focus) solid var(--pricing-accent);
+            outline-offset: var(--pricing-space-sm);
+        }
+
+        .pricing-card__header {
+            margin-bottom: var(--pricing-space-xl);
+        }
+
+        .pricing-card__title {
+            font-size: var(--pricing-font-size-2xl);
+            font-weight: var(--pricing-font-weight-bold);
+            margin: 0 0 var(--pricing-space-sm) 0;
+            color: var(--pricing-text-primary);
+            line-height: var(--pricing-line-height-tight);
+        }
+
+        .pricing-card__subtitle {
+            font-size: var(--pricing-font-size-sm);
+            color: var(--pricing-text-secondary);
+            margin: 0 0 var(--pricing-space-lg) 0;
+            font-weight: var(--pricing-font-weight-normal);
+            line-height: var(--pricing-line-height-normal);
+        }
+
+        .pricing-card__price {
+            font-size: var(--pricing-font-size-xl);
+            color: var(--pricing-accent);
+            font-weight: var(--pricing-font-weight-semibold);
+            margin: 0 0 var(--pricing-space-xl) 0;
+            line-height: var(--pricing-line-height-tight);
+        }
+
+        .pricing-card__price-currency {
+            font-size: 0.8em;
+            vertical-align: top;
+        }
+
+        .pricing-card__features {
+            list-style: none;
+            padding: 0;
+            margin: 0 0 var(--pricing-space-2xl) 0;
+        }
+
+        .pricing-card__feature {
+            padding: var(--pricing-padding-feature);
+            border-bottom: var(--pricing-border-width) solid var(--pricing-border);
+            position: relative;
+            padding-left: var(--pricing-space-2xl);
+            color: var(--pricing-text-secondary);
+            font-size: var(--pricing-font-size-base);
+            line-height: var(--pricing-line-height-normal);
+        }
+
+        .pricing-card__feature:last-child {
+            border-bottom: none;
+        }
+
+        .pricing-card__feature::before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: var(--pricing-accent);
+            font-weight: bold;
+            font-size: 1.1em;
+        }
+
+        .pricing-card__cta {
+            background: var(--pricing-accent);
+            color: white;
+            padding: var(--pricing-padding-button);
+            border: var(--pricing-border-width-thick) solid transparent;
+            border-radius: var(--pricing-radius-md);
+            cursor: pointer;
+            font-size: var(--pricing-font-size-base);
+            font-weight: var(--pricing-font-weight-semibold);
+            width: 100%;
+            transition: all var(--pricing-transition-normal);
+            box-shadow: var(--pricing-shadow-button);
+            text-decoration: none;
+            display: inline-block;
+            text-align: center;
+            min-height: var(--pricing-space-4xl);
+            line-height: var(--pricing-line-height-tight);
+        }
+
+        .pricing-card__cta:hover {
+            background: var(--pricing-accent-hover);
+            transform: translateY(-1px);
+            box-shadow: var(--pricing-shadow-button-hover);
+            text-decoration: none;
+            color: white;
+        }
+
+        .pricing-card__cta:focus-visible {
+            outline: var(--pricing-border-width-focus) solid var(--pricing-accent);
+            outline-offset: var(--pricing-space-sm);
+            background: var(--pricing-accent-hover);
+            border-color: var(--pricing-accent);
+        }
+
+        .pricing-card__cta:focus:not(:focus-visible) {
+            outline: none;
+        }
+
+        .pricing-card__cta:active {
+            transform: translateY(0);
+            box-shadow: var(--pricing-shadow-button);
+            background: var(--pricing-accent-hover);
+        }
+
+        /* Support pour les utilisateurs qui préfèrent les mouvements réduits */
+        @media (prefers-reduced-motion: reduce) {
+            .pricing-card__cta {
+                transition: none;
+            }
+            
+            .pricing-card__cta:hover {
+                transform: none;
+            }
+            
+            .pricing-card__cta:active {
+                transform: none;
+            }
+            
+            .pricing-card {
+                transition: none;
+            }
+            
+            .pricing-card:hover {
+                transform: none;
+            }
+        }
+
+        /* Amélioration du contraste pour les utilisateurs avec des besoins visuels */
+        @media (prefers-contrast: high) {
+            .pricing-card {
+                border: 2px solid var(--pricing-text-primary);
+            }
+            
+            .pricing-card__cta {
+                border: 2px solid var(--pricing-text-primary);
+            }
+            
+            .pricing-card__feature::before {
+                font-weight: 900;
+            }
+        }
+
+        /* Support pour les utilisateurs utilisant le mode sombre */
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --pricing-bg: #1a1a1a;
+                --pricing-text-primary: #ffffff;
+                --pricing-text-secondary: #d1d5db;
+                --pricing-border: #374151;
+            }
+        }
+
+        .pricing-card__badge {
+            position: absolute;
+            top: var(--pricing-space-lg);
+            right: var(--pricing-space-lg);
+            background: var(--pricing-accent-light);
+            color: var(--pricing-accent);
+            padding: var(--pricing-space-xs) var(--pricing-space-sm);
+            border-radius: var(--pricing-radius-sm);
+            font-size: var(--pricing-font-size-xs);
+            font-weight: var(--pricing-font-weight-semibold);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .pricing-card--pro .pricing-card__badge {
+            background: linear-gradient(135deg, var(--pricing-accent), var(--pricing-accent-hover));
+            color: white;
+        }
+
+        @media (max-width: 480px) {
+            body {
+                padding: var(--pricing-space-md);
+            }
+            
+            .pricing-card {
+                margin: 0;
+                border-radius: 0;
+                max-width: 100%;
+            }
+
+            .pricing-grid {
+                grid-template-columns: 1fr;
+                gap: var(--pricing-space-lg);
+            }
+        }
+
+        @media (min-width: 768px) {
+            .pricing-card {
+                max-width: 400px;
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .pricing-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="pricing-grid" role="group" aria-label="Plans tarifaires disponibles">
+        <!-- Variante Starter -->
+        <article class="pricing-card pricing-card--starter" role="group" aria-labelledby="starter-title" aria-describedby="starter-desc">
+            <div class="pricing-card__header">
+                <h2 class="pricing-card__title" id="starter-title">Starter</h2>
+                <p class="pricing-card__subtitle" id="starter-desc">Parfait pour débuter</p>
+                <p class="pricing-card__price" aria-label="9,99 euros par mois">
+                    <span class="pricing-card__price-currency" aria-hidden="true">€</span>9.99 / mois
+                </p>
+            </div>
+
+            <ul class="pricing-card__features" role="list" aria-label="Fonctionnalités du plan Starter">
+                <li class="pricing-card__feature" role="listitem">1 GB de stockage</li>
+                <li class="pricing-card__feature" role="listitem">Support de base</li>
+                <li class="pricing-card__feature" role="listitem">Toutes les fonctionnalités essentielles</li>
+                <li class="pricing-card__feature" role="listitem">Accès mobile</li>
+            </ul>
+
+            <a href="#starter" class="pricing-card__cta" role="button" aria-label="Commencer l'essai du plan Starter à 9,99 euros par mois" tabindex="0">
+                Commencer l'essai
+            </a>
+        </article>
+
+        <!-- Variante Basic (par défaut) -->
+        <article class="pricing-card" role="group" aria-labelledby="basic-title" aria-describedby="basic-desc">
+            <div class="pricing-card__badge" aria-label="Plan populaire">Populaire</div>
+            <div class="pricing-card__header">
+                <h2 class="pricing-card__title" id="basic-title">Basic</h2>
+                <p class="pricing-card__subtitle" id="basic-desc">Le plus choisi</p>
+                <p class="pricing-card__price" aria-label="19,99 euros par mois">
+                    <span class="pricing-card__price-currency" aria-hidden="true">€</span>19.99 / mois
+                </p>
+            </div>
+
+            <ul class="pricing-card__features" role="list" aria-label="Fonctionnalités du plan Basic">
+                <li class="pricing-card__feature" role="listitem">5 GB de stockage</li>
+                <li class="pricing-card__feature" role="listitem">Support prioritaire</li>
+                <li class="pricing-card__feature" role="listitem">Toutes les fonctionnalités</li>
+                <li class="pricing-card__feature" role="listitem">Accès mobile et desktop</li>
+                <li class="pricing-card__feature" role="listitem">Sauvegarde automatique</li>
+            </ul>
+
+            <a href="#basic" class="pricing-card__cta" role="button" aria-label="Commencer l'essai du plan Basic à 19,99 euros par mois" tabindex="0">
+                Commencer l'essai
+            </a>
+        </article>
+
+        <!-- Variante Pro -->
+        <article class="pricing-card pricing-card--pro" role="group" aria-labelledby="pro-title" aria-describedby="pro-desc">
+            <div class="pricing-card__badge" aria-label="Plan professionnel">Pro</div>
+            <div class="pricing-card__header">
+                <h2 class="pricing-card__title" id="pro-title">Pro</h2>
+                <p class="pricing-card__subtitle" id="pro-desc">Pour les professionnels</p>
+                <p class="pricing-card__price" aria-label="39,99 euros par mois">
+                    <span class="pricing-card__price-currency" aria-hidden="true">€</span>39.99 / mois
+                </p>
+            </div>
+
+            <ul class="pricing-card__features" role="list" aria-label="Fonctionnalités du plan Pro">
+                <li class="pricing-card__feature" role="listitem">Stockage illimité</li>
+                <li class="pricing-card__feature" role="listitem">Support 24/7</li>
+                <li class="pricing-card__feature" role="listitem">Fonctionnalités avancées</li>
+                <li class="pricing-card__feature" role="listitem">API complète</li>
+                <li class="pricing-card__feature" role="listitem">Intégrations tierces</li>
+                <li class="pricing-card__feature" role="listitem">Analytics avancées</li>
+            </ul>
+
+            <a href="#pro" class="pricing-card__cta" role="button" aria-label="Commencer l'essai du plan Pro à 39,99 euros par mois" tabindex="0">
+                Commencer l'essai
+            </a>
+        </article>
+    </div>
+
+</body>
+</html>

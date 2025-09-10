@@ -1,0 +1,26 @@
+LISTE DES PROMPTS - PROJET PRICING CARD
+==========================================
+
+1. ANALYSE INITIALE
+-------------------
+"Analyse mon code"
+
+2. CORRECTION ET AMÉLIORATION
+-----------------------------
+"Analyse et corrige ce snippet HTML/CSS. Identifie précisément les causes des problèmes d'affichage et d'interaction (typos CSS, balises non fermées, accessibilité, responsive). Propose un diff minimal puis une version propre."
+
+3. CORRECTIONS SPÉCIFIQUES
+--------------------------
+"Corrige le code pour : fermer correctement les balises, corriger box-shdow → box-shadow, rendre la carte responsive (max-width, padding fluide), ajouter :hover/:focus visibles, améliorer le contraste, et normaliser "/ mois"."
+
+4. REFACTORISATION EN COMPOSANT RÉUTILISABLE
+--------------------------------------------
+"Remanie en composant réutilisable pricing-card avec BEM ou classes claires, introduis des variables CSS (--accent, --radius, --shadow) pour créer facilement des variantes (Starter/Pro). Pas de JS. Fournis une instance d'exemple pour chaque variante."
+
+5. AMÉLIORATION DE L'ACCESSIBILITÉ
+----------------------------------
+"Ajoute les bonnes pratiques a11y : rôles/labels, focus visible, tailles de police suffisantes, liens <a> stylés en bouton avec role="button", et états :hover, :focus-visible, :active"
+
+6. HARMONISATION FINALE
+-----------------------
+"Harmonise la typographie, l'espacement, les bordures et les ombres. Utilise des variables CSS, supprime les styles redondants, et documente brièvement comment cloner la carte pour créer d'autres offre"

@@ -73,3 +73,4 @@ Un composant de carte tarifaire réutilisable, accessible et responsive, constru
 
 *Composant développé avec les meilleures pratiques d'accessibilité et de performance.*# Bonnes-pratiques-
 # Bonnes-pratiques-
+# Bonnes-pratiques-
